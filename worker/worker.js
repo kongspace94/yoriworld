@@ -40,12 +40,23 @@ async function status(env, ctx) {
   if (hit) return withKnocks(await hit.json(), env);
 
   let s;
+  // MC_HOST may be "주소" or "주소:포트" (playit 주소를 그대로 붙여넣어도 돼요; http:// 나 끝의 / 는 떼요)
+  const raw = String(env.MC_HOST || "").trim().replace(/^[a-z]+:\/\//i, "").replace(/\/+$/, "");
+  const [h, pt] = raw.split(":");
+  let host = h, port = Number(pt || 0), srvFound = false;
   try {
-    // MC_HOST may be "주소" or "주소:포트" (playit 주소를 그대로 붙여넣어도 돼요)
-    const [h, pt] = String(env.MC_HOST || "").trim().split(":");
-    s = await ping(h, Number(pt || env.MC_PORT || 25565));
-  } catch {
-    s = { online: false };
+    if (!port) {
+      // no port: look up the SRV record like the game does (playit joinmc.link 주소가 이 방식)
+      const srv = await srvLookup(h);
+      if (srv) { host = srv.host; port = srv.port; srvFound = true; }
+    }
+    s = await ping(host, port || Number(env.MC_PORT || 25565));
+  } catch (e) {
+    // why it failed, as a short word only (never the address)
+    const m = String(e && e.message || "").toLowerCase();
+    const why = !h ? "no-host" : m.includes("timeout") ? "timeout" : m.includes("refused") ? "refused"
+      : m.includes("closed") ? "closed" : m.includes("dns") || m.includes("resolve") ? "dns" : "error";
+    s = { online: false, why };
   }
   ctx.waitUntil(cache.put(key, new Response(JSON.stringify(s), { headers: { "cache-control": "max-age=30" } })));
   return withKnocks(s, env);
@@ -145,6 +156,19 @@ td{padding:4px 8px;border-bottom:1px solid #4a3a2a}h1{font-size:22px}</style>
 }
 
 // ── 도우미 ──────────────────────────────────────────────────
+async function srvLookup(name) {
+  try {
+    const r = await fetch("https://cloudflare-dns.com/dns-query?type=SRV&name=_minecraft._tcp." + encodeURIComponent(name),
+      { headers: { accept: "application/dns-json" } });
+    const j = await r.json();
+    const a = (j.Answer || []).find((x) => x.type === 33);
+    if (!a) return null;
+    const [, , port, target] = String(a.data).trim().split(/\s+/);     // "priority weight port target."
+    return { host: target.replace(/\.$/, ""), port: Number(port) };
+  } catch {
+    return null;
+  }
+}
 function today(offsetDays = 0) {                       // 한국 시간 날짜 (YYYY-MM-DD)
   return new Date(Date.now() + 9 * 3600000 + offsetDays * DAY_MS).toISOString().slice(0, 10);
 }
