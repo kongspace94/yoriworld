@@ -41,7 +41,9 @@ async function status(env, ctx) {
 
   let s;
   try {
-    s = await ping(env.MC_HOST, Number(env.MC_PORT || 25565));
+    // MC_HOST may be "주소" or "주소:포트" (playit 주소를 그대로 붙여넣어도 돼요)
+    const [h, pt] = String(env.MC_HOST || "").trim().split(":");
+    s = await ping(h, Number(pt || env.MC_PORT || 25565));
   } catch {
     s = { online: false };
   }

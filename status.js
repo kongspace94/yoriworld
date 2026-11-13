@@ -1,6 +1,6 @@
 // 서버 켜짐/꺼짐 표시 + 꺼져 있을 때 노크하기
 // API: worker/설정방법.md 대로 만든 Worker 주소. 아직 없으면 미리보기 모드로 보여요 (?demo=on / ?demo=off)
-const API = "__WORKER__";
+const API = "https://yoriworld-status.yoriworld.workers.dev";
 
 (function () {
   const pill = document.getElementById("srv");

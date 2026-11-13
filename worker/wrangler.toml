@@ -5,9 +5,9 @@ compatibility_date = "2026-10-01"
 # KV 저장소: 대시보드에서 만든 뒤 id를 여기에 넣어요
 [[kv_namespaces]]
 binding = "KNOCKS"
-id = "__KV_ID__"
+id = "d5731b3914514e388dfdf109201a42c9"
 
 [vars]
 MC_PORT = "25565"
-ALLOWED_ORIGIN = ""
+ALLOWED_ORIGIN = "https://kongspace94.github.io"
 # MC_HOST, ADMIN_KEY, DISCORD_WEBHOOK 은 비밀 값이라 여기 말고 대시보드(또는 wrangler secret put)로 넣어요
