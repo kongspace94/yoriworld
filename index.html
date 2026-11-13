@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>요리월드 다운로드</title>
+<meta name="description" content="요리월드 마인크래프트 RPG 서버 - 플레이어팩 다운로드와 설치 방법">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="logo" href="index.html">요리월드</a>
+  <a class="nav on" href="index.html">다운로드</a>
+  <a class="nav" href="guide.html">가이드</a>
+  <a class="nav" href="updates.html">업데이트 소식</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p id="srv" class="srv" hidden></p>
+    <h1>요리월드</h1>
+    <p class="tag">마인크래프트 자바 26.3 · RPG 서버</p>
+    <a class="btn" href="https://github.com/kongspace94/yoriworld/releases/latest/download/YoriWorld-PlayerPack.zip">플레이어팩 받기</a>
+    <p class="small">Windows · 압축을 풀고 <b>설치하기.bat</b> 한 번이면 끝</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="knock" class="knock card" hidden>
+    <div class="door" aria-hidden="true">🚪</div>
+    <div class="kbody">
+      <h3>지금은 서버가 쉬고 있어요</h3>
+      <p class="kmsg"></p>
+      <p class="kcount"></p>
+    </div>
+    <button type="button" class="btn knockbtn">🚪 똑똑 두드리기</button>
+  </div>
+
+  <section>
+    <h2>설치 방법</h2>
+    <ol class="steps">
+      <li>받은 압축 파일을 <b>우클릭 → 모두 압축 풀기</b> (압축을 풀지 않고 실행하면 안 돼요)</li>
+      <li>마인크래프트 게임과 런처를 모두 끄기</li>
+      <li>풀린 폴더에서 <b>설치하기.bat</b> 더블클릭<br><span style="color:var(--soft)">파란 "Windows의 PC 보호" 창이 뜨면 → 추가 정보 → 실행 · 서버 주소를 물어보면 서버 주인에게 받은 주소 입력</span></li>
+      <li>런처를 켜고 플레이 버튼 왼쪽 프로필에서 <b>요리월드</b> 선택 → 플레이 → 멀티플레이 → 요리월드 접속</li>
+    </ol>
+    <p style="color:var(--soft);font-size:15px">업데이트가 나오면 새로 받아서 설치하기.bat을 한 번 더 실행하면 돼요. 요리월드 전용 폴더를 따로 써서 원래 마인크래프트나 다른 모드와 섞이지 않아요.</p>
+    <p><a class="btn alt" href="guide.html">처음이라면 가이드 보기 →</a></p>
+  </section>
+
+  <section>
+    <h2>이런 게 있어요</h2>
+    <div class="grid">
+      <div class="card feat"><div class="ico">📖</div><h3>스킬북 · 전투력</h3><p>직업 없이 스킬북을 모아 나만의 조합을 만들고 전투력을 올려요.</p></div>
+      <div class="card feat"><div class="ico">🐉</div><h3>레이드</h3><p>쉬움 · 보통 · 어려움. 전멸기를 무력화로 끊고 극딜 타임!</p></div>
+      <div class="card feat"><div class="ico">🧭</div><h3>야생 탐험</h3><p>새 지역과 유적을 발견하고 탐험 도감을 채워요. 보물 지도도 숨어 있어요.</p></div>
+      <div class="card feat"><div class="ico">🏡</div><h3>마을 생활</h3><p>낚시 · 요리 · 채광, 내 집터 꾸미기, 마을 발전 기금까지.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>안 될 때</h2>
+    <details><summary>모드가 안 보여요</summary><p>런처에서 <b>요리월드</b> 프로필로 켰는지 확인해 주세요.</p></details>
+    <details><summary>설치하기.bat이 바로 꺼지거나 프로필이 안 생겨요</summary><p>런처를 완전히 끄고 다시 실행해 주세요. 런처를 한 번도 켜지 않았다면 먼저 켜서 로그인을 한 번 해 주세요.</p></details>
+    <details><summary>접속하자마자 튕겨요</summary><p>서버 목록에서 서버 편집 → 리소스팩을 <b>사용</b>으로 바꿔 주세요.</p></details>
+    <details><summary>쉐이더는 어떻게 켜요?</summary><p>옵션 → 비디오 설정 → 셰이더 팩 → Complementary 선택. 그래픽카드가 약하면 끊길 수 있어요.</p></details>
+  </section>
+</main>
+
+<footer>
+  요리월드 · 포함된 모드: Fabric API, Sodium, Iris, Simple Voice Chat, Complementary Shaders (각 제작자의 저작물이에요)
+</footer>
+<script src="status.js"></script>
+</body>
+</html>
