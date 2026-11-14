@@ -87,3 +87,4 @@ footer{padding:40px 0 60px;text-align:center;color:var(--soft);font-size:14px}
 @keyframes knock{20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
 @media (max-width:560px){.knock{flex-direction:column;text-align:center}.knockbtn{width:100%}}
 [hidden]{display:none!important}
+main a:not(.btn),footer a{color:var(--blue);font-weight:700}
